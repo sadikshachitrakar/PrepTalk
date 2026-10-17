@@ -1,4 +1,4 @@
-"""Day 1 check: Kokoro, Groq Whisper and gpt-oss all work before you build the bot."""
+"""Check: Kokoro, Groq Whisper and gpt-oss all work before you build the bot."""
 
 import os
 import wave
@@ -13,7 +13,6 @@ from kokoro_onnx import Kokoro
 load_dotenv()
 
 # Pipecat looks for the Kokoro voice model here, so downloading it now
-# means the bot starts fast on Day 2.
 CACHE = Path.home() / ".cache" / "pipecat" / "kokoro-onnx"
 BASE = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/"
 FILES = ["kokoro-v1.0.onnx", "voices-v1.0.bin"]
