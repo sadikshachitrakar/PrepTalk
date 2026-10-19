@@ -1,0 +1,268 @@
+{
+  "created": "2026-10-19T12:51:48",
+  "company": "Brex",
+  "role": "AI Engineer, Product",
+  "mode": "recruiter",
+  "difficulty": "standard",
+  "voice": "af_heart",
+  "minutes": 15,
+  "questions": [
+    {
+      "type": "opener",
+      "competency": "",
+      "based_on": "",
+      "question": "Tell me about yourself, and what brings you to this role.",
+      "strong_answer_covers": [
+        "a 60 to 90 second story",
+        "two or three highlights that fit this job",
+        "an ending that explains why this role"
+      ],
+      "follow_ups": [
+        "What part of your background fits this role best?"
+      ],
+      "source": "library"
+    },
+    {
+      "type": "motivation",
+      "competency": "",
+      "based_on": "Brex is an intelligent finance platform that helps companies manage spending through corporate cards, banking, spend management, bill pay, and travel software.",
+      "question": "What excites you about joining Brex as an AI Engineer, Product, and how does this role align with your career goals?",
+      "strong_answer_covers": [
+        "Shows alignment with Brex's mission to improve financial visibility through AI",
+        "Passion for building agentic systems that automate complex financial workflows",
+        "Highlights relevant experience with LLMs, product mindset, and end\u2011to\u2011end feature delivery",
+        "Mentions enthusiasm for the hybrid work model and impact on high\u2011profile customers"
+      ],
+      "follow_ups": [
+        "Can you point to a specific Brex product or feature that you find inspiring?",
+        "How does your background with LLM\u2011driven recommendation platforms translate to our Audit Agent?"
+      ],
+      "source": "planner"
+    },
+    {
+      "type": "resume",
+      "competency": "",
+      "based_on": "Architected and deployed an explainable AI career recommendation platform (Python, FastAPI, React, PostgreSQL, AWS)",
+      "question": "Can you walk me through that career recommendation platform\u2014what problem you were solving, the key design decisions you made, and the outcomes you achieved?",
+      "strong_answer_covers": [
+        "Defined the user/problem space and why explainability mattered",
+        "Explained architecture choices: FastAPI backend, PostgreSQL data model, React UI, AWS deployment",
+        "Described integration of ML ranking with LLM reasoning and guardrails",
+        "Quantified results: 30% growth in indexed content and 40% increase in organic traffic"
+      ],
+      "follow_ups": [
+        "What was the toughest technical challenge you faced and how did you resolve it?",
+        "How did you measure the platform\u2019s success and incorporate user feedback?"
+      ],
+      "source": "planner"
+    },
+    {
+      "type": "start_date",
+      "competency": "",
+      "based_on": "",
+      "question": "If you got an offer, when could you start?",
+      "strong_answer_covers": [
+        "a clear date or notice period"
+      ],
+      "follow_ups": [],
+      "source": "library"
+    },
+    {
+      "type": "salary",
+      "competency": "",
+      "based_on": "",
+      "question": "What are your salary expectations for this role?",
+      "strong_answer_covers": [
+        "a researched range rather than one number",
+        "openness to the whole package"
+      ],
+      "follow_ups": [
+        "How did you arrive at that range?"
+      ],
+      "source": "library"
+    },
+    {
+      "type": "your_questions",
+      "competency": "",
+      "based_on": "",
+      "question": "Those are all my questions. What questions do you have for me?",
+      "strong_answer_covers": [
+        "one or two specific questions the company website doesn't already answer"
+      ],
+      "follow_ups": [],
+      "source": "library"
+    }
+  ],
+  "brief": {
+    "facts": [
+      {
+        "topic": "mission",
+        "fact": "Brex offers credit cards and cash management accounts to startup technology companies",
+        "sources": [
+          {
+            "title": "Wikipedia: Brex",
+            "url": "https://en.wikipedia.org/wiki/Brex"
+          }
+        ]
+      },
+      {
+        "topic": "product",
+        "fact": "Brex launched Brex Empower, a financial software platform to help people comply with their employers' expense policies",
+        "sources": [
+          {
+            "title": "Wikipedia: Brex",
+            "url": "https://en.wikipedia.org/wiki/Brex"
+          }
+        ]
+      },
+      {
+        "topic": "news",
+        "fact": "In April 2026, Capital One acquired Brex for $5.15 billion",
+        "sources": [
+          {
+            "title": "Wikipedia: Brex",
+            "url": "https://en.wikipedia.org/wiki/Brex"
+          }
+        ]
+      },
+      {
+        "topic": "news",
+        "fact": "In August 2025, the company gained a license to operate in the European Union",
+        "sources": [
+          {
+            "title": "Wikipedia: Brex",
+            "url": "https://en.wikipedia.org/wiki/Brex"
+          }
+        ]
+      }
+    ]
+  },
+  "job": {
+    "title": "AI Engineer, Product",
+    "seniority": "mid",
+    "skills": [
+      "product engineering",
+      "backend system design",
+      "data modeling",
+      "API design",
+      "frontend development",
+      "customer feedback loops",
+      "experimentation",
+      "ambiguity handling",
+      "ownership",
+      "cross-team collaboration"
+    ],
+    "responsibilities": [
+      "Build and ship customer-facing production features, from initial concept through rollout and iteration based on customer feedback.",
+      "Design and maintain data contracts between the AI agent and Brex's financial system of record.",
+      "Develop and improve feedback and evaluation loops to gather product signals and use them to improve agent behavior, interfaces, and workflows.",
+      "Run experiments involving user interface flows, prompt-driven product changes, and new review modes; use data to guide decisions.",
+      "Speak directly with customers and reviewers, incorporate their feedback into product decisions, and help prioritize the team's next work.",
+      "Design backend systems, data models, and APIs.",
+      "Build frontend features when needed to solve customer and reviewer problems.",
+      "Collaborate across agent engineering, frontend engineering, product, and other teams.",
+      "Translate ambiguous product needs into shipped features and challenge designs when necessary to improve the overall user experience."
+    ],
+    "competencies": [
+      {
+        "competency": "ownership",
+        "evidence": "Ability to take ownership across technical layers rather than handing work off between teams."
+      },
+      {
+        "competency": "teamwork",
+        "evidence": "Ability to collaborate across team boundaries and constructively challenge decisions related to agent design, user experience, and data models."
+      },
+      {
+        "competency": "ambiguity",
+        "evidence": "Comfort working with ambiguity and communicating directly with customers."
+      },
+      {
+        "competency": "prioritizing under deadlines",
+        "evidence": "Strong bias toward action and experience building or shipping products when requirements are not fully specified."
+      }
+    ]
+  },
+  "resume": {
+    "first_name": "Sadiksha",
+    "roles": [
+      {
+        "title": "AI Engineer",
+        "organization": "AI Trusted Advisors",
+        "dates": "August 2026 - Present"
+      },
+      {
+        "title": "Graduate Research Assistant",
+        "organization": "University of New Haven",
+        "dates": "August 2025 - December 2025"
+      },
+      {
+        "title": "Software Engineer",
+        "organization": "Xuno",
+        "dates": "January 2024 - January 2025"
+      },
+      {
+        "title": "Flutter Developer",
+        "organization": "Code Himalaya",
+        "dates": "November 2022 - January 2024"
+      }
+    ],
+    "projects": [
+      {
+        "name": "CampusGuide: Agentic RAG University Assistant",
+        "summary": "Built a RAG system over university documents (PDF, DOCX, HTML) using LangChain and ChromaDB, and exposed campus tools via an MCP server and FastAPI.",
+        "my_part": "Developed the RAG system, benchmarked LLMs, and engineered an agentic LangGraph workflow to reduce hallucinations.",
+        "results": [
+          "Benchmarked Llama-3-8B, Mistral-7B, and Phi-3-Mini with an automated LLM-as-a-Judge harness; Llama-3-8B led with 53.2% factual accuracy and 0.54 grounding, versus 42.7% and 43.6%.",
+          "Reduced hallucinations on out-of-scope queries by engineering an agentic LangGraph workflow that enforced context\u2011grounded responses and correct abstention."
+        ]
+      },
+      {
+        "name": "A WS Serverless Data Pipeline for Demand Forecasting",
+        "summary": "Built a serverless AWS ETL pipeline that automatically cleans and loads 100,000 multi\u2011store retail records from S3 into PostgreSQL using Lambda, Glue, and Athena, enabling SQL analytics.",
+        "my_part": "Trained Random Forest demand\u2011forecasting models per product category on SageMaker and exposed predictions through a REST API powering Power BI dashboards.",
+        "results": [
+          "Trained Random Forest demand\u2011forecasting models per product category on SageMaker.",
+          "Exposed predictions through a REST API (API Gateway, Lambda) powering Power BI dashboards for non\u2011technical stakeholders."
+        ]
+      },
+      {
+        "name": "Keypoint Detection for Building Components",
+        "summary": "Fine\u2011tuned a Keypoint R\u2011CNN (ResNet\u201150/101\u2011FPN) in PyTorch to detect building components and regress semantic keypoints on a custom COCO\u2011format dataset.",
+        "my_part": "Compared ResNet backbones, augmented data, and achieved higher mAP scores.",
+        "results": [
+          "Achieved 0.89 mAP and 0.82 keypoint mAP (OKS), cutting validation loss from 10.05 to 3.73."
+        ]
+      }
+    ],
+    "claims": [
+      "30% growth in indexed content and 40% organic traffic increase",
+      "3.5-year MAE (R2 = 0.95) on biological age prediction",
+      "XGBoost reduced MAE by 18% versus Random Forest",
+      "4.7\u2011star rating and 500+ installs for Xuno app",
+      "30% reduction in post\u2011deployment bugs",
+      "70% reduction in release\u2011cycle time",
+      "53.2% factual accuracy and 0.54 grounding for Llama\u20113\u20118B",
+      "0.89 mAP and 0.82 keypoint mAP (OKS)",
+      "100,000 retail records processed automatically",
+      "Random Forest demand\u2011forecasting models exposed via REST API"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Flutter",
+      "Dart",
+      "R",
+      "LangChain",
+      "LangGraph",
+      "LLM Evaluation",
+      "Hugging Face",
+      "ChromaDB",
+      "XGBoost",
+      "AWS"
+    ]
+  },
+  "posting": "JOB TITLE\nAI Engineer, Product\n\nCOMPANY\nBrex\n\nJOB LOCATION\nSan Francisco, California, United States\n\nWORK ARRANGEMENT\nHybrid. Three coordinated in-office days per week: Monday, Wednesday, and Thursday. Up to four weeks per year of fully remote work are available as a perk.\n\nAPPLICATION STATUS\nApplied approximately four weeks ago.\n\nCOMPANY OVERVIEW\nBrex is an intelligent finance platform that helps companies manage spending through corporate cards, banking, spend management, bill pay, and travel software. Its platform serves customers in more than 200 markets and aims to improve financial visibility, control spending, and reduce manual expense and accounting work through AI-powered automation and customer service. Customers include DoorDash, Coinbase, Robinhood, Zoom, Plaid, Reddit, and SeatGeek.\n\nAI AT BREX / TEAM CONTEXT\nAI Engineering at Brex builds intelligent and autonomous systems integrated into the Brex platform. These AI agents are designed to do more than provide insights: they can take actions, optimize spending, manage workflows, and support real-time decisions. The team combines proprietary financial data with product and platform infrastructure to automate complex financial operations.\n\nROLE SUMMARY\nThe AI Engineer, Product will work as a product engineer on Brex's Audit Agent, an agentic system that reviews customer spending at scale and reduces manual work traditionally performed by business process outsourcing (BPO) teams. The role focuses on the product harness around the agent: workflows, user interfaces, data flows, system integrations, and feedback mechanisms that make agent outputs trustworthy and actionable for customers and reviewers.\n\nThe engineer will work across backend and frontend, with most work focused on backend system design, data modeling, and API design, alongside a meaningful amount of customer-facing UI development. The role requires close collaboration with engineers responsible for agent design and customer-facing experiences.\n\nDUTIES AND RESPONSIBILITIES\n- Build and ship customer-facing production features, from initial concept through rollout and iteration based on customer feedback.\n- Design and maintain data contracts between the AI agent and Brex's financial system of record.\n- Develop and improve feedback and evaluation loops to gather product signals and use them to improve agent behavior, interfaces, and workflows.\n- Run experiments involving user interface flows, prompt-driven product changes, and new review modes; use data to guide decisions.\n- Speak directly with customers and reviewers, incorporate their feedback into product decisions, and help prioritize the team's next work.\n- Design backend systems, data models, and APIs.\n- Build frontend features when needed to solve customer and reviewer problems.\n- Collaborate across agent engineering, frontend engineering, product, and other teams.\n- Translate ambiguous product needs into shipped features and challenge designs when necessary to improve the overall user experience.\n\nREQUIRED QUALIFICATIONS\n- Demonstrated experience shipping customer-facing features end-to-end across both backend and frontend.\n- Ability to take ownership across technical layers rather than handing work off between teams.\n- Strong product mindset, with a focus on users, workflows, and outcomes.\n- Comfort working with ambiguity and communicating directly with customers.\n- Strong bias toward action and experience building or shipping products when requirements are not fully specified.\n- Ability to collaborate across team boundaries and constructively challenge decisions related to agent design, user experience, and data models.\n- Strong backend engineering foundation, including system design, data modeling, and API design.\n- Willingness and ability to build UI features directly when needed.\n\nPREFERRED QUALIFICATIONS / BONUS POINTS\n- Experience at an early-stage startup or on a small team with end-to-end ownership of a product area.\n- Experience building products with large language models (LLMs) or agentic systems, especially evaluation, tracing, feedback loops, and human-in-the-loop workflows.\n- Experience in fintech, compliance, auditing, fraud prevention, or other domains requiring review workflows and traceability.\n- Experience building products around non-deterministic systems, where product design and controls must account for variable outputs.\n- A track record of helping teams unblock projects spanning backend, frontend, and other systems.\n\nCOMPENSATION\nExpected base salary range: $171,000\u2013$240,000 USD. Starting base pay depends on factors such as location, skills, experience, market demand, and internal pay parity. Equity or other forms of compensation may be included depending on the position.\n\nCOMPANY LEGAL INFORMATION\nBrex LLC is a wholly owned subsidiary of Capital One, N.A.\n\nRECRUITING / SECURITY NOTICE\nBrex recruiters will contact candidates through LinkedIn or email addresses using the brex.com domain. Job seekers should ignore outreach claiming to be from Brex through other sources, as it may be malicious."
+}
