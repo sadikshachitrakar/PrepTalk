@@ -1,0 +1,35 @@
+{
+  "text": "Didn't I answer this about already?",
+  "words": [
+    {
+      "word": "Didn't",
+      "start": 0.5,
+      "end": 1
+    },
+    {
+      "word": "I",
+      "start": 1,
+      "end": 1.2
+    },
+    {
+      "word": "answer",
+      "start": 1.2,
+      "end": 1.56
+    },
+    {
+      "word": "this",
+      "start": 1.56,
+      "end": 1.9
+    },
+    {
+      "word": "about",
+      "start": 1.9,
+      "end": 2.24
+    },
+    {
+      "word": "already?",
+      "start": 2.24,
+      "end": 2.98
+    }
+  ]
+}
