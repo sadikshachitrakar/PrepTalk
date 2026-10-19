@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interview coach</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Set up a practice interview</h1>
+  <p class="lead">Paste a job, add your resume, and pick how the interview should go. Preparing takes about 30 seconds.</p>
+
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  {% if last %}
+  <p>Last plan: {{ last.company }}, {{ modes[last.mode].name }}. <a href="/plan">See the plan</a> or <a href="/client/">start it</a>.</p>
+  {% endif %}
+
+  <form method="post" action="/prepare" enctype="multipart/form-data" onsubmit="preparing()">
+    <label>Company name
+      <input name="company" required value="{{ form.company }}">
+    </label>
+    <label>Job description
+      <textarea name="posting" rows="12" required placeholder="Paste the whole posting">{{ form.posting }}</textarea>
+    </label>
+    <label>Resume (PDF)
+      <input type="file" name="resume" accept=".pdf" required>
+    </label>
+    <p class="hint">Your email address and phone number are removed before anything is sent. Take your street address off the PDF if it's there.</p>
+
+    <div class="choices">
+      <label>Mode
+        <select name="mode">
+          {% for key, mode in modes.items() %}
+          <option value="{{ key }}" {{ "selected" if key == form.mode }}>{{ mode.name }} ({{ mode.minutes }} min)</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Difficulty
+        <select name="difficulty">
+          {% for key in levels %}
+          <option value="{{ key }}" {{ "selected" if key == form.difficulty }}>{{ key | capitalize }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Interviewer voice
+        <select name="voice">
+          {% for key, label in voices.items() %}
+          <option value="{{ key }}" {{ "selected" if key == form.voice }}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
+    <button id="prepare">Prepare my interview</button>
+  </form>
+</main>
+<script>
+  function preparing() {
+    const button = document.getElementById("prepare");
+    button.disabled = true;
+    button.textContent = "Preparing, about 30 seconds...";
+  }
+</script>
+</body>
+</html>

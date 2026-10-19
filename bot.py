@@ -1,7 +1,7 @@
-"""The mock interviewer.
+"""The mock interviewer, running your newest interview plan.
 
 Run it:  uv run bot.py -t webrtc
-Then open http://localhost:7860 in Chrome and click Connect.
+Then open http://localhost:7860 in Chrome.
 """
 
 import asyncio
@@ -25,19 +25,21 @@ from pipecat.runner.utils import create_transport
 from pipecat.services.groq.llm import GroqLLMService
 from pipecat.services.groq.stt import GroqSTTService
 from pipecat.services.kokoro.tts import KokoroTTSService
+from pipecat.transcriptions.language import Language
 from pipecat.transports.base_transport import BaseTransport, TransportParams
 from pipecat.turns.user_turn_completion_mixin import UserTurnCompletionConfig
 from pipecat.turns.user_turn_strategies import FilterIncompleteUserTurnStrategies
 from pipecat.workers.runner import WorkerRunner
+from setup_page import add_setup_page
 
 from interview import (
     IDLE_NUDGE,
     KICKOFF,
-    MAX_MINUTES,
     TIME_UP,
     MuteAfterGoodbye,
     build_system_prompt,
     end_interview,
+    load_plan,
 )
 from recorder import SessionRecorder
 
@@ -52,6 +54,10 @@ transport_params = {
 
 
 async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
+    # Your newest plan from plans/, or the Week 1 questions if there is none yet.
+    plan = load_plan()
+    logger.info(f"Plan: {plan['mode']} interview for the {plan['role']} role at {plan['company']}")
+
     # Ears: Groq's hosted Whisper turns your speech into text.
     stt = GroqSTTService(api_key=os.environ["GROQ_API_KEY"])
 
@@ -61,12 +67,13 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
         settings=GroqLLMService.Settings(
             model="openai/gpt-oss-20b",
             reasoning_effort="low",  # less thinking, faster replies
-            system_instruction=build_system_prompt(),
+            system_instruction=build_system_prompt(plan),
         ),
     )
 
-    # Voice: Kokoro runs on your laptop, no key needed.
-    tts = KokoroTTSService(settings=KokoroTTSService.Settings(voice="af_heart"))
+    # Voice: Kokoro runs on your laptop. Voices starting with "b" are British.
+    accent = Language.EN_GB if plan["voice"].startswith("b") else Language.EN_US
+    tts = KokoroTTSService(settings=KokoroTTSService.Settings(voice=plan["voice"], language=accent))
 
     # The conversation history. The interviewer can call end_interview.
     context = LLMContext(tools=[end_interview])
@@ -94,8 +101,8 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
             LLMMessagesAppendFrame([{"role": "developer", "content": IDLE_NUDGE}], run_llm=True)
         )
 
-    # Saves answer clips, the transcript and response times to sessions/.
-    recorder = SessionRecorder()
+    # Saves the plan, answer clips, the transcript and response times to sessions/.
+    recorder = SessionRecorder(plan)
 
     # Audio flows top to bottom: mic -> text -> reply -> voice -> speakers.
     pipeline = Pipeline(
@@ -123,8 +130,8 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
     await runner.add_workers(worker)
 
     async def wrap_up_on_time():
-        """After MAX_MINUTES, tell the interviewer to finish after the current answer."""
-        await asyncio.sleep(MAX_MINUTES * 60)
+        """When the mode's time is up, tell the interviewer to finish after the current answer."""
+        await asyncio.sleep(plan["minutes"] * 60)
         logger.info("Time is up: the interviewer will wrap up")
         await worker.queue_frames(
             [LLMMessagesAppendFrame([{"role": "developer", "content": TIME_UP}], run_llm=False)]
@@ -156,6 +163,7 @@ async def bot(runner_args: RunnerArguments):
 
 
 if __name__ == "__main__":
-    from pipecat.runner.run import main
+    from pipecat.runner.run import app, main
 
+    add_setup_page(app)  # the setup page at http://localhost:7860
     main()

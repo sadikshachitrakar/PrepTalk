@@ -1,0 +1,54 @@
+:root {
+  color-scheme: light dark;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #dcdce0;
+  --card: #ffffff;
+  --page: #f6f6f7;
+  --accent: #2f5bea;
+  --button: #2f5bea;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f2f2f2;
+    --muted: #a1a1a6;
+    --line: #3a3a3c;
+    --card: #1f1f22;
+    --page: #161618;
+    --accent: #7d9bff;
+  }
+}
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 28px; margin: 0 0 8px; }
+h2 { font-size: 20px; margin: 40px 0 12px; }
+a { color: var(--accent); }
+.lead, .hint, .quote { color: var(--muted); }
+.hint, .quote { font-size: 14px; }
+label { display: block; margin-top: 16px; font-weight: 600; }
+input, textarea, select {
+  display: block; width: 100%; box-sizing: border-box; margin-top: 6px; padding: 10px;
+  font: inherit; font-weight: 400; color: inherit; background: var(--card);
+  border: 1px solid var(--line); border-radius: 8px;
+}
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 16px; }
+button, .button {
+  display: inline-block; margin-top: 24px; padding: 12px 20px; border: 0; border-radius: 8px;
+  background: var(--button); color: #fff; font: inherit; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+}
+button:disabled { opacity: 0.6; cursor: wait; }
+.error { padding: 12px; border-radius: 8px; background: #fde8e8; color: #8a1c1c; }
+.questions li, .facts li { margin-bottom: 16px; }
+.questions p { margin: 4px 0; }
+.tag {
+  display: inline-block; padding: 1px 8px; border-radius: 999px;
+  border: 1px solid var(--line); font-size: 12px; color: var(--muted);
+}
+.warn { color: #b25e00; }
+details { margin-top: 40px; }

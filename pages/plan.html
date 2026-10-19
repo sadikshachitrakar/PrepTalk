@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interview plan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <p><a href="/">New interview</a></p>
+  <h1>{{ plan.role }} at {{ plan.company }}</h1>
+  <p class="lead">{{ mode.name }}, {{ plan.difficulty }}, about {{ plan.minutes }} minutes, with {{ voices[plan.voice] }}.</p>
+  <a class="button" href="/client/">Start the interview</a>
+  <p class="hint">On the next page, put on headphones, click Connect and allow the microphone.</p>
+
+  <h2>The questions</h2>
+  <ol class="questions">
+    {% for q in plan.questions %}
+    <li>
+      <span class="tag">{{ q.type | replace("_", " ") }}{% if q.competency %}: {{ q.competency }}{% endif %}</span>
+      <p>{{ q.question }}</p>
+      {% if q.source == "planner" %}
+      <p class="quote">Based on: "{{ q.based_on }}"</p>
+      {% elif q.source == "fallback" %}
+      <p class="quote warn">Standard question: the planner's version didn't quote its source.</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+
+  <h2>What the interviewer knows about {{ plan.company }}</h2>
+  {% if plan.brief.facts %}
+  <ul class="facts">
+    {% for fact in plan.brief.facts %}
+    <li>
+      <span class="tag">{{ fact.topic }}</span> {{ fact.fact }}
+      {% for source in fact.sources %}<a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.title }}</a> {% endfor %}
+    </li>
+    {% endfor %}
+  </ul>
+  {{ plan.brief.search_suggestions | safe }}
+  {% else %}
+  <p class="hint">{{ plan.brief.note }}</p>
+  {% endif %}
+
+  <details>
+    <summary>What the planner read</summary>
+    <h3>From the job</h3>
+    <p>Seniority: {{ plan.job.seniority }}. Skills: {{ plan.job.skills | join(", ") }}.</p>
+    <ul>
+      {% for need in plan.job.competencies %}
+      <li>{{ need.competency }}: "{{ need.evidence }}"</li>
+      {% endfor %}
+    </ul>
+    <h3>From your resume</h3>
+    <ul>
+      {% for project in plan.resume.projects %}
+      <li>{{ project.name }}: {{ project.summary }}</li>
+      {% endfor %}
+    </ul>
+  </details>
+</main>
+</body>
+</html>

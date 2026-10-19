@@ -24,10 +24,12 @@ def save_wav(path: Path, audio: bytes, sample_rate: int, channels: int):
 class SessionRecorder:
     """Writes everything about one interview into sessions/<date_time>/."""
 
-    def __init__(self):
+    def __init__(self, plan: dict):
         self.folder = SESSIONS / datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         (self.folder / "answers").mkdir(parents=True, exist_ok=True)
         self.turn = 0
+        # Keep the plan with the recording: next week's feedback needs both.
+        (self.folder / "plan.json").write_text(json.dumps(plan, indent=2))
 
         # Records your mic (left channel) and the interviewer (right channel).
         self.audio = AudioBufferProcessor(
