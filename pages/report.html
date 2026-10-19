@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interview report</title>
+  {% if not report %}<meta http-equiv="refresh" content="10">{% endif %}
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <nav><a href="/">New interview</a> <a href="/history">History</a></nav>
+  {% if not report %}
+  <h1>Your report is on its way</h1>
+  <p class="lead">Scoring takes a minute or two after the call ends. This page checks again every 10 seconds.</p>
+  <p class="hint">Nothing after five minutes? Run <code>uv run python -m feedback.report</code> in Terminal to see why.</p>
+  {% else %}
+  {% set summary = report.summary %}
+  {% set talk = summary.delivery %}
+  <h1>{{ report.role }} at {{ report.company }}</h1>
+  <p class="lead">{{ modes[report.mode].name }}, {{ report.difficulty }}, {{ report.session[:10] }}. Content: {{ summary.average }} out of 5 across {{ report.answers | length }} answers.</p>
+
+  <h2>Summary</h2>
+  <h3>Strengths</h3>
+  <ul>{% for item in summary.strengths %}<li>{{ item }}</li>{% endfor %}</ul>
+  <h3>Fix first</h3>
+  <ul>{% for item in summary.fixes %}<li>{{ item }}</li>{% endfor %}</ul>
+  <h3>Practice next</h3>
+  <p>{{ summary.practice_next }}</p>
+  <h3>Delivery</h3>
+  <p>You spoke for {{ (talk.seconds / 60) | round(1) }} minutes at {{ talk.wpm }} words a minute{% if your_pace %} (your average is {{ your_pace }}){% endif %}, with {{ talk.long_pauses }} pauses over 2 seconds and {{ talk.fillers_per_minute }} filler words a minute.</p>
+
+  <h2>Answer by answer</h2>
+  {% for answer in report.answers %}
+  {% set talk = answer.delivery %}
+  <section class="answer">
+    <h3>{{ answer.number }}. {{ answer.question }}</h3>
+    <p class="hint">Content {{ answer.average }} out of 5. {{ talk.seconds }} seconds at {{ talk.wpm }} words a minute. Long pauses: {{ talk.long_pauses }}.</p>
+    <p class="hint">Fillers: {% for word, n in talk.fillers.items() %}{{ word }} {{ n }}{{ ", " if not loop.last }}{% else %}none{% endfor %}. Hedges: {% for phrase, n in talk.hedges.items() %}{{ phrase }} {{ n }}{{ ", " if not loop.last }}{% else %}none{% endfor %}.</p>
+    {% for turn in answer.clips %}<audio controls preload="none" src="/clip/{{ report.session }}/{{ turn }}"></audio>{% endfor %}
+    <details>
+      <summary>What was said</summary>
+      {% for part in answer.exchange %}
+      <p><b>Interviewer:</b> {{ part.asked }}</p>
+      <p><b>You:</b> {{ part.said }}</p>
+      {% endfor %}
+    </details>
+    <div class="scroll">
+      <table>
+        <tr><th>Dimension</th><th>Score</th><th>Evidence</th></tr>
+        {% for key, name in dimensions.items() %}
+        {% set score = answer.scores[key] %}
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ score.score or "n/a" }}</td>
+          <td>{% if score.quote %}"{{ score.quote }}" {% endif %}<span class="hint">{{ score.why }}</span></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <p><b>Fix:</b> {{ answer.fix }}</p>
+    <p><b>Stronger version:</b> {{ answer.stronger }}</p>
+  </section>
+  {% endfor %}
+  {% endif %}
+</main>
+</body>
+</html>

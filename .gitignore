@@ -12,3 +12,4 @@ wheels/
 .env
 plans/
 samples/
+history.db

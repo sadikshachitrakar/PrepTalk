@@ -8,6 +8,7 @@ import asyncio
 import os
 
 from dotenv import load_dotenv
+from feedback.report import build_report
 from loguru import logger
 
 from pipecat.audio.vad.silero import SileroVADAnalyzer
@@ -30,6 +31,7 @@ from pipecat.transports.base_transport import BaseTransport, TransportParams
 from pipecat.turns.user_turn_completion_mixin import UserTurnCompletionConfig
 from pipecat.turns.user_turn_strategies import FilterIncompleteUserTurnStrategies
 from pipecat.workers.runner import WorkerRunner
+from report_page import add_report_pages
 from setup_page import add_setup_page
 
 from interview import (
@@ -156,6 +158,14 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
     if timer:
         timer.cancel()
 
+    # The call is over: write its feedback report while you open the report page.
+    if any((recorder.folder / "answers").glob("*.wav")):
+        try:
+            await build_report(recorder.folder)
+            logger.info(f"Report ready: http://localhost:7860/report/{recorder.folder.name}")
+        except Exception:
+            logger.exception("The report failed. Rerun it with: uv run python -m feedback.report")
+
 
 async def bot(runner_args: RunnerArguments):
     transport = await create_transport(runner_args, transport_params)
@@ -166,4 +176,5 @@ if __name__ == "__main__":
     from pipecat.runner.run import app, main
 
     add_setup_page(app)  # the setup page at http://localhost:7860
+    add_report_pages(app)  # /report and /history
     main()

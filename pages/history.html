@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interview history</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <nav><a href="/">New interview</a> <a href="/report">Latest report</a></nav>
+  <h1>Your progress</h1>
+  {% if not rows %}
+  <p class="lead">No reports yet. Finish an interview and it shows up here.</p>
+  {% else %}
+  <p class="lead">Newest first. Content is out of 5; pace is in words a minute.</p>
+  <div class="scroll">
+    <table>
+      <tr><th>Date</th><th>Interview</th><th>Content</th><th>Pace</th><th>Fillers a minute</th><th>Long pauses</th></tr>
+      {% for row in rows %}
+      <tr>
+        <td class="nowrap"><a href="/report/{{ row.session }}">{{ row.session[:10] }}</a></td>
+        <td>{{ row.role }} at {{ row.company }}</td>
+                <td>
+            <span class="bar" style="--bar-width: {{ ((row.score or 0) * 16)|int }}px"></span>
+            {{ row.score }}
+        </td>
+        <td>{{ row.wpm | int if row.wpm else "" }}</td>
+        <td>{{ row.fillers_per_minute if row.fillers_per_minute is not none else "" }}</td>
+        <td>{{ row.long_pauses }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+</main>
+</body>
+</html>

@@ -52,3 +52,12 @@ button:disabled { opacity: 0.6; cursor: wait; }
 }
 .warn { color: #b25e00; }
 details { margin-top: 40px; }
+
+nav a { margin-right: 16px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.scroll { overflow-x: auto; }
+.answer { margin-top: 32px; border-top: 1px solid var(--line); }
+audio { display: block; width: 100%; margin: 8px 0; }
+.bar { display: inline-block; height: 8px; margin-right: 8px; border-radius: 4px; background: var(--button); }
+.nowrap { white-space: nowrap; }
