@@ -1,4 +1,4 @@
-"""Day 5: save each answer as an audio clip, plus the transcript and response times."""
+"""Save each answer as an audio clip, plus the transcript and response times."""
 
 import json
 import wave
@@ -28,7 +28,7 @@ class SessionRecorder:
         self.folder = root / datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         (self.folder / "answers").mkdir(parents=True, exist_ok=True)
         self.turn = 0
-        # Keep the plan with the recording: next week's feedback needs both.
+        # Keep the plan with the recording: the feedback report needs both.
         (self.folder / "plan.json").write_text(json.dumps(plan, indent=2))
 
         # Records your mic (left channel) and the interviewer (right channel).

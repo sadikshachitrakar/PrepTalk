@@ -1,4 +1,4 @@
-"""Day 4: score one answer on content, check its quotes, and write a stronger version."""
+"""Score one answer on content, check its quotes, and write a stronger version."""
 
 import re
 from pathlib import Path

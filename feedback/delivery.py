@@ -70,7 +70,7 @@ def combine(clips: list[dict]) -> dict:
 
 
 if __name__ == "__main__":
-    # Try it after Day 1:  uv run python -m feedback.delivery
+    # Try it after transcribing:  uv run python -m feedback.delivery
     import json
     from pathlib import Path
 

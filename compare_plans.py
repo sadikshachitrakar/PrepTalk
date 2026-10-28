@@ -1,4 +1,4 @@
-"""Put your two most recent plans side by side, for this week's gate."""
+"""Put your two most recent plans side by side, to check they're really tailored."""
 
 import json
 from pathlib import Path

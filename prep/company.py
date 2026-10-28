@@ -1,4 +1,4 @@
-"""Day 3: a short company brief, with a source for every fact.
+"""A short company brief, with a source for every fact.
 
 Facts come from the company's Wikipedia article, or from the job posting when Wikipedia has none.
 """
@@ -12,8 +12,8 @@ import requests
 from prep.llm import Strict, ask_json
 
 API = "https://en.wikipedia.org/w/api.php"
-# Wikipedia asks every app for its name and a contact link. Put your GitHub username here.
-HEADERS = {"User-Agent": "interview-coach/1.0 (https://github.com/YOUR-USERNAME/interview-coach)"}
+# Wikipedia asks every app for its name and a contact link.
+HEADERS = {"User-Agent": "interview-coach/1.0 (https://github.com/sadikshachitrakar/Voice-Mock-Interview-Coach)"}
 
 
 class Fact(Strict):

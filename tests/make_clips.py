@@ -1,7 +1,7 @@
 """Make answer clips with thinking pauses of known length, in Kokoro's voice.
 
-Checks the coach's pause and pace numbers against them, and Day 4 plays
-them to the interviewer to catch cut-ins. Run it:  uv run python -m tests.make_clips
+Checks the coach's pause and pace numbers against them, and tests/pauses.yaml
+plays them to the interviewer to catch cut-ins. Run it:  uv run python -m tests.make_clips
 """
 
 import json
@@ -12,7 +12,7 @@ import numpy as np
 from kokoro_onnx import Kokoro
 
 HERE = Path(__file__).parent
-CACHE = Path.home() / ".cache" / "pipecat" / "kokoro-onnx"  # downloaded in Week 1
+CACHE = Path.home() / ".cache" / "pipecat" / "kokoro-onnx"  # downloaded by check_setup.py
 VOICE = "am_michael"
 
 # Each answer is spoken pieces with pauses (in seconds) between them. Every long
@@ -121,10 +121,10 @@ def main():
 
 
 def write_pause_tests(truth: list[dict]):
-    """Day 4's audio tests: play each clip after the greeting, and fail if the
+    """The audio tests: play each clip after the greeting, and fail if the
     interviewer starts talking before the clip has finished."""
     lines = [
-        "# Made by tests/make_clips.py. Day 4: each test plays one answer with a thinking",
+        "# Made by tests/make_clips.py. Each test plays one answer with a thinking",
         "# pause. The interviewer must not start talking until the whole clip has played.",
         "name: pauses",
         "user:",

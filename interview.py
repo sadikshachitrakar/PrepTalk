@@ -23,7 +23,7 @@ MAX_MINUTES = 15  # used only until you've prepared a plan
 KICKOFF = "The candidate just joined. Greet them and ask the first question."
 FAREWELL = "Thank you for your time today. That's the end of our interview. Goodbye!"
 TIME_UP_FAREWELL = "Thanks. That's all we have time for today. " + FAREWELL
-# Used when the candidate stays silent after a question (Week 1, Day 4).
+# Used when the candidate stays silent after a question.
 IDLE_NUDGE = (
     "The candidate has been silent since your last question. Start your reply with ● "
     "and say, in one short sentence, that they can take their time and you're happy "
@@ -31,8 +31,8 @@ IDLE_NUDGE = (
 )
 
 
-def week1_plan() -> dict:
-    """Your Week 1 questions, used until you prepare a plan on the setup page."""
+def starter_plan() -> dict:
+    """The questions in questions.txt, used until you prepare a plan on the setup page."""
     lines = (HERE / "questions.txt").read_text().splitlines()
     questions = [line.strip() for line in lines if line.strip()]
     return {
@@ -51,10 +51,10 @@ def week1_plan() -> dict:
 
 
 def load_plan(path: str | None = None) -> dict:
-    """The plan file at `path` (the tests use one), else your newest plan or Week 1's questions."""
+    """The plan file at `path` (the tests use one), else your newest plan or the starter questions."""
     if path:
         return json.loads((HERE / path).read_text())
-    return latest_plan() or week1_plan()
+    return latest_plan() or starter_plan()
 
 
 def build_system_prompt(plan: dict) -> str:

@@ -52,7 +52,7 @@ from recorder import SESSIONS, SessionRecorder
 load_dotenv(override=True)
 
 # How people can connect: "webrtc" is the browser test page; "eval" lets
-# automated tests talk to the bot (you'll use it in week 4).
+# automated tests talk to the bot.
 transport_params = {
     "webrtc": lambda: TransportParams(audio_in_enabled=True, audio_out_enabled=True),
     "eval": lambda: EvalTransportParams(audio_in_enabled=True, audio_out_enabled=True),
@@ -60,14 +60,14 @@ transport_params = {
 
 
 async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
-    # Your newest plan from plans/, or the Week 1 questions if there is none yet.
+    # Tests name a plan file; otherwise use your newest plan.
     testing = isinstance(runner_args, EvalRunnerArguments)
     if testing:
         test = runner_args.body or {}
         plan = load_plan(test.get("plan", "tests/plan.json"))
         plan["minutes"] = test.get("minutes", plan["minutes"])
     else:
-        # Your newest plan from plans/, or the Week 1 questions if there is none yet.
+        # Your newest plan from plans/, or the starter questions if there is none yet.
         plan = load_plan()
     logger.info(f"Plan: {plan['mode']} interview for the {plan['role']} role at {plan['company']}")
 

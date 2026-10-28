@@ -1,4 +1,4 @@
-# Day 2: simulated candidates. An LLM plays each candidate, then the judge reads the
+# Simulated candidates. An LLM plays each candidate, then the judge reads the
 # whole interview: did it reach its goal, and did every reply follow the rules?
 name: candidates
 

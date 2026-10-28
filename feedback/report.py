@@ -24,7 +24,7 @@ PRACTICE = {
 async def build_report(session: Path) -> dict:
     """Transcribe, measure and score every answer, then save report.json and your history."""
     if not (session / "plan.json").exists():
-        raise ValueError(f"{session.name} has no plan.json, so it was recorded before Week 2.")
+        raise ValueError(f"{session.name} has no plan.json, so it can't be scored.")
     plan = json.loads((session / "plan.json").read_text())
 
     answers = []

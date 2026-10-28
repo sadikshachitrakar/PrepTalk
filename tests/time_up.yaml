@@ -1,4 +1,4 @@
-# Day 1: the manifest gives this bot a 30-second limit, so the interviewer must wrap up
+# The manifest gives this bot a 30-second limit, so the interviewer must wrap up
 # at the next answer instead of asking another question. Nothing here needs a judge.
 # The goodbye comes from code (TimeKeeper in interview.py), so the test waits for the
 # call to end rather than for an end_interview call.

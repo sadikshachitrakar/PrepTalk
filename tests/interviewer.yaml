@@ -1,4 +1,4 @@
-# Day 1: scripted checks. You write the candidate's lines; a judge on Groq reads each reply.
+# Scripted checks. You write the candidate's lines; a judge on Groq reads each reply.
 name: interviewer
 
 judge:

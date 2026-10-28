@@ -1,4 +1,4 @@
-"""Check: Kokoro, Groq Whisper and gpt-oss all work before you build the bot."""
+"""Check: Kokoro, Groq Whisper and gpt-oss all work before you run the bot."""
 
 import os
 import wave
