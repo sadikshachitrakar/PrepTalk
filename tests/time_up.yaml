@@ -1,5 +1,7 @@
 # Day 1: the manifest gives this bot a 30-second limit, so the interviewer must wrap up
 # at the next answer instead of asking another question. Nothing here needs a judge.
+# The goodbye comes from code (TimeKeeper in interview.py), so the test waits for the
+# call to end rather than for an end_interview call.
 name: time_up
 
 scenarios:
@@ -10,5 +12,5 @@ scenarios:
       - user: "I just finished my master's in data science, and I like SQL, dashboards and messy data."
         send_after: {delay_ms: 35000}  # answer after the 30 seconds are up
         expect:
-          - event: function_call
-            name: end_interview
+          - event: bot_ended
+            within_ms: 30000

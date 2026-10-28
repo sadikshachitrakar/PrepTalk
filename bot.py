@@ -40,8 +40,9 @@ from setup_page import add_setup_page
 from interview import (
     IDLE_NUDGE,
     KICKOFF,
-    TIME_UP,
     MuteAfterGoodbye,
+    OneTurnPerReply,
+    TimeKeeper,
     build_system_prompt,
     end_interview,
     load_plan,
@@ -73,12 +74,15 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
     # Ears: Groq's hosted Whisper turns your speech into text.
     stt = GroqSTTService(api_key=os.environ["GROQ_API_KEY"])
 
-    # Brain: gpt-oss on Groq, following the interviewer prompt.
+    # Brain: gpt-oss on Groq, following the interviewer prompt. The 120b model, because
+    # in replayed tests the 20b one ended the interview after the first answer 3 times in 10.
     llm = GroqLLMService(
         api_key=os.environ["GROQ_API_KEY"],
         settings=GroqLLMService.Settings(
-            model="openai/gpt-oss-20b",
-            reasoning_effort="low",  # less thinking, faster replies
+            model="openai/gpt-oss-120b",
+            # Medium, not low: on low it often ran past its own turn ("...projects?● Thanks.
+            # Next question...") and even answered for the candidate. Costs about 0.4 s a reply.
+            reasoning_effort="medium",
             system_instruction=build_system_prompt(plan),
         ),
     )
@@ -89,11 +93,14 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
 
     # The conversation history. The interviewer can call end_interview.
     context = LLMContext(tools=[end_interview])
+    mute = MuteAfterGoodbye()
+    # Says goodbye in code once time is up (see wrap_up_on_time below).
+    time_keeper = TimeKeeper(mute)
     user_aggregator, assistant_aggregator = LLMContextAggregatorPair(
         context,
         user_params=LLMUserAggregatorParams(
             vad_analyzer=SileroVADAnalyzer(),
-            user_mute_strategies=[MuteAfterGoodbye()],
+            user_mute_strategies=[mute],
             # Smart Turn (on by default) listens for an unfinished sentence; this also
             # lets the LLM check your words before it answers.
             user_turn_strategies=FilterIncompleteUserTurnStrategies(
@@ -124,6 +131,8 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
             stt,
             user_aggregator,
             llm,
+            OneTurnPerReply(),  # never speaks a second turn the LLM ran on into
+            time_keeper,
             tts,
             transport.output(),
             recorder.audio,
@@ -143,12 +152,10 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
     await runner.add_workers(worker)
 
     async def wrap_up_on_time():
-        """When the mode's time is up, tell the interviewer to finish after the current answer."""
+        """When the mode's time is up, finish after the current answer."""
         await asyncio.sleep(plan["minutes"] * 60)
-        logger.info("Time is up: the interviewer will wrap up")
-        await worker.queue_frames(
-            [LLMMessagesAppendFrame([{"role": "developer", "content": TIME_UP}], run_llm=False)]
-        )
+        logger.info("Time is up: the interviewer will wrap up after this answer")
+        time_keeper.time_up = True
 
     timer = None
 

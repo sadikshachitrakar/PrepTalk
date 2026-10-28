@@ -124,7 +124,7 @@ async def prepare(company, posting, resume_pdf, mode, difficulty, voice) -> Path
 
     async def job_then_company():
         job = await parse_job(posting)
-        return job, await research_company(company, job.title)
+        return job, await research_company(company, job.title, posting)
 
     # Your resume is read while the job and the company are researched.
     (job, brief), resume = await asyncio.gather(job_then_company(), parse_resume(resume_text))

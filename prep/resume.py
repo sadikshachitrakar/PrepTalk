@@ -42,7 +42,10 @@ Copy facts and numbers exactly. Never invent, round or improve anything."""
 
 def read_resume(pdf) -> str:
     """Pull the text out of a PDF, then remove email addresses and phone numbers."""
-    text = "\n".join(page.extract_text() or "" for page in PdfReader(pdf).pages)
+    try:
+        text = "\n".join(page.extract_text() or "" for page in PdfReader(pdf).pages)
+    except Exception as error:  # not a PDF, or a damaged one
+        raise ValueError("Couldn't read this PDF. Export it again from Word or Google Docs.") from error
     if not text.strip():
         raise ValueError("No text found in this PDF. Export it from Word or Google Docs instead.")
     text = EMAIL.sub("[email removed]", text)
