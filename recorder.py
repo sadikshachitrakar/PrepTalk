@@ -24,8 +24,8 @@ def save_wav(path: Path, audio: bytes, sample_rate: int, channels: int):
 class SessionRecorder:
     """Writes everything about one interview into sessions/<date_time>/."""
 
-    def __init__(self, plan: dict):
-        self.folder = SESSIONS / datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    def __init__(self, plan: dict, root: Path = SESSIONS):
+        self.folder = root / datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         (self.folder / "answers").mkdir(parents=True, exist_ok=True)
         self.turn = 0
         # Keep the plan with the recording: next week's feedback needs both.

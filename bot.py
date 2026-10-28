@@ -7,6 +7,9 @@ Then open http://localhost:7860 in Chrome.
 import asyncio
 import os
 
+from pathlib import Path
+from tempfile import mkdtemp
+
 from dotenv import load_dotenv
 from feedback.report import build_report
 from loguru import logger
@@ -21,7 +24,7 @@ from pipecat.processors.aggregators.llm_response_universal import (
     LLMContextAggregatorPair,
     LLMUserAggregatorParams,
 )
-from pipecat.runner.types import RunnerArguments
+from pipecat.runner.types import EvalRunnerArguments, RunnerArguments
 from pipecat.runner.utils import create_transport
 from pipecat.services.groq.llm import GroqLLMService
 from pipecat.services.groq.stt import GroqSTTService
@@ -43,7 +46,7 @@ from interview import (
     end_interview,
     load_plan,
 )
-from recorder import SessionRecorder
+from recorder import SESSIONS, SessionRecorder
 
 load_dotenv(override=True)
 
@@ -57,7 +60,14 @@ transport_params = {
 
 async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
     # Your newest plan from plans/, or the Week 1 questions if there is none yet.
-    plan = load_plan()
+    testing = isinstance(runner_args, EvalRunnerArguments)
+    if testing:
+        test = runner_args.body or {}
+        plan = load_plan(test.get("plan", "tests/plan.json"))
+        plan["minutes"] = test.get("minutes", plan["minutes"])
+    else:
+        # Your newest plan from plans/, or the Week 1 questions if there is none yet.
+        plan = load_plan()
     logger.info(f"Plan: {plan['mode']} interview for the {plan['role']} role at {plan['company']}")
 
     # Ears: Groq's hosted Whisper turns your speech into text.
@@ -104,7 +114,8 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
         )
 
     # Saves the plan, answer clips, the transcript and response times to sessions/.
-    recorder = SessionRecorder(plan)
+    # Tests save to a throwaway folder instead, so sessions/ keeps only your interviews.
+    recorder = SessionRecorder(plan, root=Path(mkdtemp()) if testing else SESSIONS)
 
     # Audio flows top to bottom: mic -> text -> reply -> voice -> speakers.
     pipeline = Pipeline(
@@ -159,7 +170,7 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
         timer.cancel()
 
     # The call is over: write its feedback report while you open the report page.
-    if any((recorder.folder / "answers").glob("*.wav")):
+    if not testing and any((recorder.folder / "answers").glob("*.wav")):
         try:
             await build_report(recorder.folder)
             logger.info(f"Report ready: http://localhost:7860/report/{recorder.folder.name}")

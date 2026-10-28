@@ -1,0 +1,55 @@
+# Day 1: scripted checks. You write the candidate's lines; a judge on Groq reads each reply.
+name: interviewer
+
+judge:
+  eval:
+    factory: tests.services.judge
+    model: openai/gpt-oss-120b
+    allow_continue: false  # every reply is a final answer, so the judge says yes or no
+
+scenarios:
+  - name: one_question_at_a_time
+    turns:
+      - expect:
+          - event: response
+            eval: "greets the candidate and asks exactly one question"
+      - user: "I just finished my master's in data science. I like turning messy data into clear answers, and this role is mostly SQL and dashboards, which is the work I enjoy most."
+        expect:
+          - event: response
+            eval: "asks exactly one question, not two or more"
+
+  - name: asks_for_the_result
+    turns:
+      - expect:
+          - event: response
+      - user: "I just finished my master's in data science. I like turning messy data into clear answers, and this role is mostly SQL and dashboards, which is the work I enjoy most."
+        expect:
+          - event: response
+      - user: "Our weekly sales dashboard didn't match the finance report. I compared the two queries, found a join that counted refunds twice, and fixed it."
+        expect:
+          - event: response
+            eval: "asks what the result or impact was"
+
+  - name: no_feedback_during_the_interview
+    turns:
+      - expect:
+          - event: response
+      - user: "I just finished my master's in data science, where I built a dashboard that cut a clinic's weekly reporting time from six hours to one. I want this role because it's that same work: SQL, dashboards and helping people decide faster."
+        expect:
+          - event: response
+            eval: "gives no feedback on the answer: no praise, rating or advice. A neutral acknowledgement such as 'Thanks' or 'Got it' is fine."
+
+  - name: ends_after_the_last_question
+    turns:
+      - expect:
+          - event: response
+      - user: "I just finished my master's in data science, where I built a dashboard that cut a clinic's weekly reporting time from six hours to one. I want this role because it's that same work: SQL, dashboards and helping people decide faster."
+        expect:
+          - event: response
+      - user: "In my internship our churn numbers looked too good. I checked the raw tables myself and found that cancelled trials were being counted as active customers. I fixed the query and added a test for it, and churn went from four percent to the real number, nine percent, before the board meeting. I learned to check surprising numbers before I share them."
+        expect:
+          - event: response
+      - user: "No, I don't have any questions. Thank you."
+        expect:
+          - event: function_call
+            name: end_interview

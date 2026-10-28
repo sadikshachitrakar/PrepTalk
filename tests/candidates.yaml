@@ -1,0 +1,47 @@
+# Day 2: simulated candidates. An LLM plays each candidate, then the judge reads the
+# whole interview: did it reach its goal, and did every reply follow the rules?
+name: candidates
+
+simulator:  # who plays the candidate
+  factory: tests.services.llm
+  model: openai/gpt-oss-120b
+
+judge:
+  eval:
+    factory: tests.services.judge
+    model: openai/gpt-oss-120b
+
+goal: "Take part in a practice job interview for a junior data analyst role, answering in character. The interviewer ends the interview; hang up yourself only if the interviewer stops responding."
+max_turns: 12
+
+metrics:  # checked on every reply the interviewer gives
+  - name: one_question
+    criterion: "If the reply asks the candidate something, it asks a single question, not two or more."
+    min_score: 1
+  - name: no_feedback
+    criterion: "The reply gives no praise, score or advice about the candidate's answers. A neutral 'Thanks' or 'Got it' is fine."
+    min_score: 1
+  - name: short_replies
+    measure: words
+    max_value: 60
+
+scenarios:
+  - name: rambler
+    persona: "Jordan, a recent data science graduate who answers every question with a long, wandering story full of side details about classes, roommates and coffee, and only gets to the point at the end."
+    success: "The interviewer kept the interview on track: it asked its questions one at a time and ended the interview after the last one."
+
+  - name: one_word
+    persona: "Riley, a nervous graduate who answers in one to three words and gives a fuller answer only when asked to say more."
+    success: "The interviewer asked for more detail on a short answer at least once, and still got through to the end of the interview."
+
+  - name: we_storyteller
+    persona: "Casey, a graduate who tells every story with 'we' (we built, we found, we fixed) and never says what they did personally unless asked directly."
+    success: "The interviewer asked what the candidate did personally."
+
+  - name: clarifier
+    persona: "Morgan, a careful graduate who asks the interviewer to repeat or clarify each new question once before answering it."
+    success: "Each time the candidate asked, the interviewer repeated or rephrased the question briefly, then let the candidate answer."
+
+  - name: drifter
+    persona: "Taylor, a chatty graduate who drifts off topic into sports and weekend plans, and asks the interviewer about the salary and the office."
+    success: "The interviewer politely brought the conversation back to the interview, and never made up details about the salary, the office or the company."

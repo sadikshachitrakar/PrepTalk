@@ -1,0 +1,14 @@
+# Day 1: the manifest gives this bot a 30-second limit, so the interviewer must wrap up
+# at the next answer instead of asking another question. Nothing here needs a judge.
+name: time_up
+
+scenarios:
+  - name: ends_when_time_is_up
+    turns:
+      - expect:
+          - event: response
+      - user: "I just finished my master's in data science, and I like SQL, dashboards and messy data."
+        send_after: {delay_ms: 35000}  # answer after the 30 seconds are up
+        expect:
+          - event: function_call
+            name: end_interview

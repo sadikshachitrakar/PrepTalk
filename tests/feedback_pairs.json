@@ -1,0 +1,222 @@
+[
+  {
+    "differs_by": "result",
+    "question": {
+      "type": "behavioral",
+      "competency": "ownership",
+      "question": "Tell me about a time you owned a problem nobody assigned to you.",
+      "strong_answer_covers": ["the situation", "your own actions", "a measured result", "what you learned"]
+    },
+    "weak": "Our nightly data load kept failing and nobody was looking into it. I traced the failures to a schema change, added a validation step, and set up an alert so we would know right away.",
+    "strong": "Our nightly data load kept failing and nobody was looking into it. I traced the failures to a schema change, added a validation step, and set up an alert so we would know right away. Failures went from about four a week to zero over the next two months, and I learned to add a check before I add a fix."
+  },
+  {
+    "differs_by": "result",
+    "question": {
+      "type": "resume",
+      "competency": "",
+      "question": "Walk me through the dashboard project on your resume.",
+      "strong_answer_covers": ["your own role", "a decision you made", "a result with a number"]
+    },
+    "weak": "I built a Tableau dashboard for a clinic's front desk. I pulled appointment data with SQL, cleaned it in Python, and designed three views: daily volume, no-shows and wait times.",
+    "strong": "I built a Tableau dashboard for a clinic's front desk. I pulled appointment data with SQL, cleaned it in Python, and designed three views: daily volume, no-shows and wait times. The front desk started using it every morning, and no-shows dropped from eighteen to eleven percent in a quarter because they called high-risk patients the day before. I learned to sit with users before designing anything."
+  },
+  {
+    "differs_by": "result",
+    "question": {
+      "type": "behavioral",
+      "competency": "influencing without authority",
+      "question": "Tell me about a time you used data to change someone's mind.",
+      "strong_answer_covers": ["the disagreement", "the analysis you did", "what changed", "what you learned"]
+    },
+    "weak": "My manager wanted to cut the email newsletter because he thought nobody read it. I pulled the click data, split it by customer segment, and showed him the results in our weekly meeting.",
+    "strong": "My manager wanted to cut the email newsletter because he thought nobody read it. I pulled the click data, split it by customer segment, and showed him the results in our weekly meeting. Repeat buyers clicked at three times the average rate, so instead of cutting it we sent it only to them. Unsubscribes fell by half and newsletter revenue held steady. I learned to bring the segment view, not just the average."
+  },
+  {
+    "differs_by": "result",
+    "question": {
+      "type": "behavioral",
+      "competency": "learning fast",
+      "question": "Tell me about a time you had to learn a new tool quickly.",
+      "strong_answer_covers": ["why it was urgent", "how you learned", "the result", "what you'd do differently"]
+    },
+    "weak": "Two weeks before a deadline my team switched from Excel to Power BI. I took an online course, rebuilt our monthly report in it, and showed the others how to refresh it.",
+    "strong": "Two weeks before a deadline my team switched from Excel to Power BI. I took an online course, rebuilt our monthly report in it, and showed the others how to refresh it. The report that took a full day by hand now refreshes in ten minutes, and two teammates used my notes to build their own. Next time I would start with the data model instead of the visuals."
+  },
+  {
+    "differs_by": "ownership",
+    "question": {
+      "type": "behavioral",
+      "competency": "ownership",
+      "question": "Tell me about a time you found a mistake in data that other people had missed.",
+      "strong_answer_covers": ["the situation", "what you did yourself", "the result", "what you learned"]
+    },
+    "weak": "We noticed the sales dashboard didn't match finance. We looked into the queries, we found a join that counted refunds twice, and we fixed it, so the numbers matched after that.",
+    "strong": "I noticed the sales dashboard didn't match finance by about six percent. I compared the two queries line by line and found a join that counted refunds twice. I fixed the join and added a test for it, and the numbers matched to the dollar the next week."
+  },
+  {
+    "differs_by": "ownership",
+    "question": {
+      "type": "job_skill",
+      "competency": "",
+      "question": "Describe a project where you worked with messy data.",
+      "strong_answer_covers": ["what was messy", "what you did", "the outcome"]
+    },
+    "weak": "Our team got survey data from four clinics in different formats. We cleaned it up, we standardized the columns, and we built a model to predict which patients would miss appointments, which got to about eighty percent accuracy.",
+    "strong": "I got survey data from four clinics in different formats. I wrote a cleaning script that standardized the columns and flagged missing values, then built a model to predict missed appointments. It reached about eighty percent accuracy, and the clinics used it to plan reminder calls."
+  },
+  {
+    "differs_by": "ownership",
+    "question": {
+      "type": "behavioral",
+      "competency": "ownership",
+      "question": "Tell me about a time you improved a process.",
+      "strong_answer_covers": ["the old process", "what you changed yourself", "the time or money saved"]
+    },
+    "weak": "On our analytics team the monthly report took two days. We automated it with Python and scheduled it, and now it runs overnight.",
+    "strong": "On my analytics team the monthly report took two days of copying from spreadsheets. I wrote a Python script that pulls the data and builds the charts, and I scheduled it to run overnight. It now takes ten minutes to check, which freed about two days a month for analysis."
+  },
+  {
+    "differs_by": "ownership",
+    "question": {
+      "type": "resume",
+      "competency": "",
+      "question": "Tell me about a machine learning project you're proud of.",
+      "strong_answer_covers": ["your own role", "a decision you made", "a result with a number"]
+    },
+    "weak": "For our capstone we built a model to predict hospital readmissions. We tried logistic regression and gradient boosting, we tuned them, and we presented the results to the hospital.",
+    "strong": "For my capstone I owned the modeling for a hospital readmission project. I compared logistic regression and gradient boosting, chose boosting because it caught twelve percent more readmissions at the same false alarm rate, and presented the trade-offs to the hospital's quality team."
+  },
+  {
+    "differs_by": "focus",
+    "question": {
+      "type": "opener",
+      "competency": "",
+      "question": "Tell me about yourself, and what brings you to this role.",
+      "strong_answer_covers": ["a 60 to 90 second story", "two or three highlights that fit this job", "an ending that explains why this role"]
+    },
+    "weak": "So, I grew up loving math, though for a while in high school I wanted to be a pilot, and then I studied computing, and there was this professor who was really into databases, and I built mobile apps for a couple of years, which was fun but stressful, and then I moved for my master's, and the winters took some getting used to, and I took a lot of classes, and anyway, now I like data, so I applied to a lot of jobs, including this one.",
+    "strong": "I'm a data analyst who started as a software engineer. I spent two years shipping mobile apps, which taught me to care about the people using what I build. In my master's I moved to data and built a staffing dashboard that a clinic now uses every week. This role is the same work at a bigger scale, dashboards that help hospitals plan, so it's the next step I want."
+  },
+  {
+    "differs_by": "focus",
+    "question": {
+      "type": "motivation",
+      "competency": "",
+      "question": "Why do you want to work here?",
+      "strong_answer_covers": ["something specific about the company", "how it fits your skills", "why now"]
+    },
+    "weak": "Well, I've been looking at a lot of companies, and honestly the market is tough right now, and a friend of mine works in healthcare, and I read some articles about hospitals and staffing, and I think data is going to be huge everywhere, and your website looked nice, and I like that you're not too big, and the commute would be fine, so yeah, it seemed like a good fit overall I guess.",
+    "strong": "Two reasons. First, your dashboards help hospitals plan staffing, and I built a small version of that for a clinic in my master's, so I know how much it matters to the people on shift. Second, the role is mostly SQL and dashboards with real users, which is the work I'm best at and want to get better at."
+  },
+  {
+    "differs_by": "focus",
+    "question": {
+      "type": "technical",
+      "competency": "",
+      "question": "How do you explain a technical result to someone who isn't technical?",
+      "strong_answer_covers": ["plain language", "an example", "how you check it landed"]
+    },
+    "weak": "It depends, really, on a lot of things, like who the person is and what they know already, and sometimes I use charts but sometimes charts confuse people, and there are a lot of ways, like analogies, and I think it's important to be clear, and also not too long, and to check they understand, and it really depends on the situation.",
+    "strong": "I start with the decision they need to make, not the method. When I showed a clinic manager our no-show model, I said these twenty patients are most likely to miss tomorrow, so call them first, and I kept the accuracy to one sentence. Then I ask them to say it back in their own words, so I know it landed."
+  },
+  {
+    "differs_by": "focus",
+    "question": {
+      "type": "behavioral",
+      "competency": "prioritizing under deadlines",
+      "question": "Tell me about a time you had to meet a tight deadline.",
+      "strong_answer_covers": ["the deadline and why it was tight", "how you prioritized", "the result", "what you learned"]
+    },
+    "weak": "Oh, there have been so many, school was full of deadlines, and in my internship there was this one week where everything was due, and my manager was traveling, and I think we also had a holiday that week, and the data was late from the other team, which happens a lot, and I stayed late a few nights, and in the end it all worked out, more or less.",
+    "strong": "In my internship the quarterly sales report was due on a Friday, and the other team's data arrived on Wednesday, two days late. I listed what the executives actually needed, cut two nice-to-have charts, and checked the totals against finance first. I delivered on Friday morning, and the next quarter I set up an automatic data check so we would see delays a week earlier."
+  },
+  {
+    "differs_by": "specificity",
+    "question": {
+      "type": "job_skill",
+      "competency": "",
+      "question": "What's your strongest technical skill, and where have you used it?",
+      "strong_answer_covers": ["one skill", "a real example", "the outcome"]
+    },
+    "weak": "Probably SQL. I've used it a lot in different projects and I'm pretty good at writing queries and getting the data I need.",
+    "strong": "SQL. I use it daily: window functions for running totals, common table expressions to keep long queries readable, and I once tuned a slow report query from forty seconds to two by adding an index and removing a correlated subquery."
+  },
+  {
+    "differs_by": "specificity",
+    "question": {
+      "type": "behavioral",
+      "competency": "failure and learning",
+      "question": "Tell me about a time you made a mistake at work.",
+      "strong_answer_covers": ["the mistake", "how you owned it", "the fix", "what you changed afterwards"]
+    },
+    "weak": "I once made an error in a report, and I fixed it once I realized. I learned to be more careful.",
+    "strong": "In my first month I sent a weekly report that double counted returning customers, so growth looked twelve percent higher than it was. I told my manager the same morning, sent a corrected version, and added a test for duplicate customer IDs. Since then I check every surprising number against the source before I send anything."
+  },
+  {
+    "differs_by": "specificity",
+    "question": {
+      "type": "scenario",
+      "competency": "",
+      "question": "How would you check whether a dashboard is right?",
+      "strong_answer_covers": ["concrete checks", "a comparison with the source", "edge cases", "user feedback"]
+    },
+    "weak": "I'd look at the numbers and make sure they make sense, and maybe compare them with other sources.",
+    "strong": "I'd check three things. First, the totals against the source system for one day, to the dollar. Second, a few rows by hand, like one patient's visits, to make sure joins don't duplicate anything. Third, the edge cases: refunds, time zones and missing values. Then I'd ask a user whether anything looks off to them."
+  },
+  {
+    "differs_by": "specificity",
+    "question": {
+      "type": "behavioral",
+      "competency": "conflict",
+      "question": "Tell me about a time you worked with a difficult stakeholder.",
+      "strong_answer_covers": ["what made it difficult", "what you did", "the result"]
+    },
+    "weak": "I worked with a manager who kept changing what they wanted. I tried to be patient and communicate well, and eventually we got there.",
+    "strong": "A clinic manager changed the dashboard requirements three times in two weeks. I set up a fifteen minute check-in every Monday, wrote down each request with the decision it supported, and showed a rough version before building the full one. The changes stopped after the second check-in, and we shipped a week early."
+  },
+  {
+    "differs_by": "relevance",
+    "question": {
+      "type": "behavioral",
+      "competency": "conflict",
+      "question": "Tell me about a time you disagreed with your manager.",
+      "strong_answer_covers": ["a real disagreement", "how you raised it", "what happened"]
+    },
+    "weak": "I generally get along with everyone. I think communication is really important, and I always try to see things from other people's point of view, so I don't really have disagreements.",
+    "strong": "My manager wanted to send a survey to all our customers at once. I disagreed, because a small pilot would catch confusing questions first. I showed him two past surveys with low completion and suggested a pilot of two hundred people. He agreed, the pilot found two confusing questions, and the full survey had the highest completion rate we'd seen."
+  },
+  {
+    "differs_by": "relevance",
+    "question": {
+      "type": "situational",
+      "competency": "ambiguity",
+      "question": "What would you do in your first month here?",
+      "strong_answer_covers": ["learning how the product is used", "learning the data", "an early small win"]
+    },
+    "weak": "I'm a fast learner and a hard worker, and I'm really passionate about data. I think I'd fit in well with the team and I'm excited about the role.",
+    "strong": "First, I'd learn how hospitals use the dashboards by sitting in on two or three client calls. Second, I'd get access to the data and rebuild one existing report myself to learn the tables. By the end of the month I'd want to have fixed one small thing a user asked for, so I'm useful early."
+  },
+  {
+    "differs_by": "relevance",
+    "question": {
+      "type": "technical",
+      "competency": "",
+      "question": "How do you handle missing data?",
+      "strong_answer_covers": ["finding out why it's missing", "a method for each case", "being open about it"]
+    },
+    "weak": "Data quality is really important. Bad data leads to bad decisions, so I always care a lot about data quality in everything I do.",
+    "strong": "First I find out why it's missing, because that decides the fix. If it's random and a small share, I drop those rows. If it's systematic, like one clinic not reporting on weekends, I flag it and handle it separately, and I always report how much was missing so nobody over-trusts the result."
+  },
+  {
+    "differs_by": "relevance",
+    "question": {
+      "type": "behavioral",
+      "competency": "failure and learning",
+      "question": "Tell me about a time you failed.",
+      "strong_answer_covers": ["a real failure", "your part in it", "what you did next", "what you changed"]
+    },
+    "weak": "I'd say my biggest weakness is that I'm a perfectionist. I sometimes spend too much time making things perfect, but I'm working on it.",
+    "strong": "In my capstone I promised a hospital a readmission model in six weeks and missed the date by two weeks, because I underestimated how long cleaning their records would take. I told them early, delivered a simpler version on time, and the full model later. Now I plan data cleaning first and add a buffer for it."
+  }
+]

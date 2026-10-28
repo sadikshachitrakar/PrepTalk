@@ -1,0 +1,18 @@
+# Which tests run against which bot. Paths are relative to this file.
+concurrency: 1  # one test at a time keeps you inside Groq's free per-minute limits
+bots_dir: ..  # the project folder, where bot.py is
+scenarios_dir: .
+runs_dir: ../test-runs
+
+suite:
+  - bot: bot.py
+    name: interviewer
+    runner_body:
+      data: {plan: tests/plan.json}
+    scenarios: [interviewer]
+
+  - bot: bot.py
+    name: short_on_time
+    runner_body:
+      data: {plan: tests/plan.json, minutes: 0.5}
+    scenarios:  [interviewer, candidates]

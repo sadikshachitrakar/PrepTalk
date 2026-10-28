@@ -1,0 +1,46 @@
+{
+  "company": "Brightwater Analytics",
+  "role": "Junior Data Analyst",
+  "mode": "behavioral",
+  "difficulty": "standard",
+  "voice": "af_heart",
+  "minutes": 10,
+  "questions": [
+    {
+      "type": "opener",
+      "competency": "",
+      "question": "Tell me about yourself, and what brings you to this role.",
+      "strong_answer_covers": [
+        "a 60 to 90 second story",
+        "two or three highlights that fit this job",
+        "an ending that explains why this role"
+      ],
+      "follow_ups": ["What part of your background fits this role best?"]
+    },
+    {
+      "type": "behavioral",
+      "competency": "ownership",
+      "question": "Tell me about a time you found a mistake in data that other people had missed.",
+      "strong_answer_covers": [
+        "the situation and why it mattered",
+        "what you did yourself",
+        "the result, ideally with a number",
+        "what you learned"
+      ],
+      "follow_ups": ["What was the result?", "What did you do yourself?"]
+    },
+    {
+      "type": "your_questions",
+      "competency": "",
+      "question": "Those are all my questions. What questions do you have for me?",
+      "strong_answer_covers": ["one or two specific questions about the team or the work"],
+      "follow_ups": []
+    }
+  ],
+  "brief": {
+    "facts": [
+      {"fact": "Brightwater Analytics builds dashboards that help regional hospitals plan staffing."}
+    ]
+  },
+  "resume": {"first_name": "Sam"}
+}

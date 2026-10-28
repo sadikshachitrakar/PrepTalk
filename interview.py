@@ -1,5 +1,5 @@
 """The interviewer's prompt (built from your plan), how the interview ends, and the time limit."""
-
+import json
 from pathlib import Path
 
 from pipecat.adapters.schemas.direct_function import tool_options
@@ -48,8 +48,10 @@ def week1_plan() -> dict:
     }
 
 
-def load_plan() -> dict:
-    """The plan you prepared most recently, or the Week 1 questions."""
+def load_plan(path: str | None = None) -> dict:
+    """The plan file at `path` (the tests use one), else your newest plan or Week 1's questions."""
+    if path:
+        return json.loads((HERE / path).read_text())
     return latest_plan() or week1_plan()
 
 
